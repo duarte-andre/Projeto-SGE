@@ -1,28 +1,22 @@
 <script setup lang="ts">
-    import { ref, computed } from 'vue'
+    import { ref, computed, reactive } from 'vue'
+    
+    //JÉSSICA NÃO TRANQUE O CURSO:
+    //const username = ref('')
+    //const password = ref('')
 
-    /*
-    exemplos para explicar typescript
-    const teste = 'ok'
-    const value1 = ref(0)
-    const value2 = ref(0)   
-    const makeMul = (n1:number,n2:number):number => n1 * n2
+    const credentials = reactive({
+        username: '',
+        password: ''
+    });
 
-    const result = computed(()=> makeMul(value1.value,value2.value))*/
 </script>
 
 <template>
-    <!--
-    <div>
-        <h1>My HomePage!!!</h1>
-        <p>{{ teste }}</p>
-        <input type="text" v-model="value1">
-        <input type="text" v-model="value2">
-        <p>Result: {{ result }}</p>
-    </div>-->
-    <main class="login_main"> 
+   
+    <main class="flex_center login_main"> 
         <!-- content of logo image -->
-        <section class="logo_panel">
+        <section class="logo_panel flex_center">
             <img src="/sge.jpeg" alt="sge logo">
             <h1>Sistema de Gestão de Ensino</h1>
             <p>&reg; Senai Roberto Mange</p>
@@ -33,35 +27,88 @@
 
          <!-- content of login form -->
          <section class="login_panel">
-            <h1>teste</h1>
+            <div class="login_content flex_center">
+                <h1>LOGIN</h1>
+                <form class="login_form">
+                    <div class="input_container">
+                        <CustomInput label="LOGIN" inputId="user_login"
+                            v-model="credentials.username"
+                        />
+                    </div>
+                    <div class="input_container">
+                        <CustomInput label="SENHA" type="password" inputId="pass_login" 
+                            v-model="credentials.password"
+                        />
+                    </div>
+                    <button type="submit" class="customButton">ENTRAR</button>
+                </form>
+            </div>
         </section>
     </main>
 </template>
 
 <style scoped lang="scss">
 
-    .login_main{
-        width: 100vw;
-        height: 100vh;
+    .flex_center{
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
+    }
+
+    .login_main{
+        width: 100vw;
+        height: 100vh;       
         background-color: var(--dark-background-color);
 
         .logo_panel{
             display: none;
+            width: 50vw;
+            height: 100vh;   
+            flex-direction: column;  
+            color: var(--light-background-color);       
+            img{              
+                margin: 0px 0px 25px 0px;
+                align-items: center;
+                width: 65%;
+                height: 45%;
+            }
         }
 
         .login_panel{
             width: 100vw;
             height: 100vh;  
             background-color: var(--light-background-color);
+
+            .login_content{
+                flex-direction: column;
+                width: 100%;
+                height: 80%;
+
+                h1{
+                    width: 120px;
+                    padding-top: 10px;
+                    padding-bottom: 50px;
+                    font-size: 36px;
+                }
+                .login_form{
+                    width: 60%;
+                    .input_container{
+                        margin-top: 30px;
+                    }
+                    .customButton{
+                        margin-top: 50px;
+                    }
+                }
+            }
         }
     }
 
     @media screen and (min-width: 550px){
         .login_main{
+            .login_panel{
+                width: 50vw;
+            }
             .logo_panel{
                 display: flex;
             }

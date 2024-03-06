@@ -6,6 +6,21 @@ body {
     box-sizing: border-box;
 }
 
+.customButton{
+    background-color: #dc3d3d;
+    color: white;
+    border: none;
+    justify-content: center;
+    align-self: center;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    height: 50px;
+    width: 100%;
+    cursor: pointer;
+    &:hover{ background-color: #e05e5e;}
+    &:disabled{ background-color: #d38f8f;}
+}
 
 /*SCSS PARA EFEITO ESTRELADO NAS TELAS*/
 @keyframes gradient {
