@@ -23,20 +23,16 @@ const model = defineModel();
         width: 100%;
         color: black;
     }
-    label:focus,
-    label:valid,
-    input:focus,
-    input:valid{
-        outline: 0;
-        border-color: crimson;
-    }
-
+    
+    
     input{
         width:100%;
         padding:10px;
         border:0;
         border-bottom: 2px solid black;
         font-size:20px;
+        &:focus{outline: 0;
+        border-color: crimson;}
     }
 }
 </style>

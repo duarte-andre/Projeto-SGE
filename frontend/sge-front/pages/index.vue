@@ -1,5 +1,6 @@
 <script setup lang="ts">
     import { ref, computed, reactive } from 'vue'
+    const { signIn } = useAuth() //importando a função de login da sidebase
     
     //JÉSSICA NÃO TRANQUE O CURSO:
     //const username = ref('')
@@ -9,6 +10,17 @@
         username: '',
         password: ''
     });
+
+    const submitLogin = async()=>{
+        console.log("trying to login with credetials below", credentials);
+        try{
+            await signIn(credentials, {redirect: false});
+            navigateTo('/home');
+        } catch(error){
+            console.log("Error when trying to login: ", error)
+        }
+    }
+
 
 </script>
 
@@ -29,7 +41,7 @@
          <section class="login_panel">
             <div class="login_content flex_center">
                 <h1>LOGIN</h1>
-                <form class="login_form">
+                <form class="login_form" v-on:submit.prevent="submitLogin"> <!--prevent evita reload da pagina-->
                     <div class="input_container">
                         <CustomInput label="LOGIN" inputId="user_login"
                             v-model="credentials.username"
