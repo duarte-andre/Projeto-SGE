@@ -11,14 +11,31 @@
         password: ''
     });
 
-    const submitLogin = async()=>{
-        console.log("trying to login with credetials below", credentials);
+//função usando ASYNC/AWAIT  E try/catch
+    /*const submitLogin = async()=>{
+        console.log("trying to login with credentials below:", credentials);
         try{
             await signIn(credentials, {redirect: false});
             navigateTo('/home');
-        } catch(error){
-            console.log("Error when trying to login: ", error)
         }
+        catch(error){
+            console.log("Error when trying to login: ", error);
+        }
+    }*/
+
+
+// função usando PROMISE THEN/CATCH
+    const submitLogin =()=>{
+        console.log("trying to login with credetials below", credentials);
+        
+            signIn(credentials, {redirect: false}).then(()=>{
+                console.log("Successfully logged!");
+                navigateTo('/home');
+            })
+            
+         .catch((error)=>{
+            console.log("Error when trying to login: ", error);
+        });
     }
 
 
