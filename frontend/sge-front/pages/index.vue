@@ -11,38 +11,51 @@
         password: ''
     });
 
-//função usando ASYNC/AWAIT  E try/catch
+    //para lidar com promises, podemos usar o try/catch com o async/await    
     /*const submitLogin = async()=>{
         console.log("trying to login with credentials below:", credentials);
         try{
             await signIn(credentials, {redirect: false});
             navigateTo('/home');
-        }
-        catch(error){
+        } catch(error){
             console.log("Error when trying to login: ", error);
         }
     }*/
-
-
-// função usando PROMISE THEN/CATCH
-    const submitLogin =()=>{
-        console.log("trying to login with credetials below", credentials);
-        
-            signIn(credentials, {redirect: false}).then(()=>{
-                console.log("Successfully logged!");
-                navigateTo('/home');
-            })
-            
-         .catch((error)=>{
+    
+    //também podemos lidar com Promises usando o then/catch
+    const submitLogin = ()=>{
+        console.log("trying to login with credentials below:", credentials);        
+        signIn(credentials, {redirect: false})
+        .then(()=>{
+            console.log("successfully logged!!");
+            navigateTo('/home');
+        })
+        .catch((error)=>{
             console.log("Error when trying to login: ", error);
         });
     }
+    
 
 
+    /*
+    exemplos para explicar typescript
+    const teste = 'ok'
+    const value1 = ref(0)
+    const value2 = ref(0)   
+    const makeMul = (n1:number,n2:number):number => n1 * n2
+
+    const result = computed(()=> makeMul(value1.value,value2.value))*/
 </script>
 
 <template>
-   
+    <!--
+    <div>
+        <h1>My HomePage!!!</h1>
+        <p>{{ teste }}</p>
+        <input type="text" v-model="value1">
+        <input type="text" v-model="value2">
+        <p>Result: {{ result }}</p>
+    </div>-->
     <main class="flex_center login_main"> 
         <!-- content of logo image -->
         <section class="logo_panel flex_center">
@@ -58,7 +71,7 @@
          <section class="login_panel">
             <div class="login_content flex_center">
                 <h1>LOGIN</h1>
-                <form class="login_form" v-on:submit.prevent="submitLogin"> <!--prevent evita reload da pagina-->
+                <form class="login_form" v-on:submit.prevent="submitLogin">
                     <div class="input_container">
                         <CustomInput label="LOGIN" inputId="user_login"
                             v-model="credentials.username"

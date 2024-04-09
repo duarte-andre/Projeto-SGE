@@ -1,161 +1,173 @@
 from django.contrib import admin
 from .models import *
 
-class adminCustomUser(admin.ModelAdmin):
-    list_display = ('id', 'email', 'registrationNumber', 'is_active')
-    list_display_links = ('id', 'email', 'registrationNumber', 'is_active',)
-    search_fields = ('email', 'registrationNumber',)
+class AdminCustomUser(admin.ModelAdmin):
+    list_display = ('id','email','registrationNumber','is_active')
+    list_display_links = ('id','email','registrationNumber','is_active',)
+    search_fields = ('email','registrationNumber',)
     list_per_page = 10
 
-admin.site.register(CustomUser, adminCustomUser)
+admin.site.register(CustomUser,AdminCustomUser)
 
-class adminEnvironments(admin.ModelAdmin):
-    list_display = ('id', 'name', 'block')
-    list_display_links = ('id', 'name', 'block',)
-    search_fields = ('name', 'block',)
+class AdminEnvironments(admin.ModelAdmin):
+    list_display = ('id','name','block')
+    list_display_links = ('id','name','block',)
+    search_fields = ('name','block',)
     list_per_page = 10
 
-admin.site.register(Environments, adminEnvironments)
+admin.site.register(Environments,AdminEnvironments)
 
-class adminTasks(admin.ModelAdmin):
-    list_display = ('id', 'title', 'environmentFK')
-    list_display_links = ('id', 'title', 'environmentFK',)
-    search_fields = ('title', 'environmentFK',)
+class AdminTasks(admin.ModelAdmin):
+    list_display = ('id','title','environmentFK', 'creationDate')
+    list_display_links = ('id','title','environmentFK', 'creationDate',)
+    search_fields = ('title',)
     list_per_page = 10
 
-admin.site.register(Tasks, adminTasks)
+admin.site.register(Tasks,AdminTasks)
 
-class adminTasksAssignees(admin.ModelAdmin):
-    list_display = ('id', 'taskFK', 'assigneeFK')
-    list_display_links = ('id', 'taskFK', 'assigneeFK',)
-    search_fields = ('taskFK', 'assigneeFK',)
+class AdminTasksAssignees(admin.ModelAdmin):
+    list_display = ('id','taskFK','assigneeFK')
+    list_display_links = ('id','taskFK','assigneeFK',)
+    search_fields = ('taskFK',)
     list_per_page = 10
 
-admin.site.register(TasksAssignees, adminTasksAssignees)
+admin.site.register(TasksAssignees,AdminTasksAssignees)
 
-
-class adminEquipments(admin.ModelAdmin):
-    list_display = ('id', 'name', 'code', 'assigneeFK')
-    list_display_links = ('id', 'name', 'code', 'assigneeFK',)
-    search_fields = ('name', 'code', 'assigneeFK',)
+class AdminEquipments(admin.ModelAdmin):
+    list_display = ('id','name','code')
+    list_display_links = ('id','name','code',)
+    search_fields = ('name','code',)
     list_per_page = 10
 
-admin.site.register(Equipments, adminEquipments)
+admin.site.register(Equipments,AdminEquipments)
 
-
-class adminTasksStatus(admin.ModelAdmin):
-    list_display = ('id', 'taskFK', 'status', 'creationDate', 'comment')
-    list_display_links = ('id', 'taskFK', 'status', 'creationDate',)
-    search_fields = ('status', 'creationDate',)
+class AdminTasksStatus(admin.ModelAdmin):
+    list_display = ('id','taskFK','status')
+    list_display_links = ('id','taskFK','status',)
+    search_fields = ('taskFK',)
     list_per_page = 10
 
-admin.site.register(TasksStatus, adminTasksStatus)
+admin.site.register(TasksStatus,AdminTasksStatus)
 
-
-class adminFilesTasksStatus(admin.ModelAdmin):
-    list_display = ('id', 'taskStatusFK', 'link', 'fileType',)
-    list_display_links = ('id', 'taskStatusFK', 'link', 'fileType',)
-    search_fields = ('taskStatusFK', 'link',)
+class AdminFilesTasksStatus(admin.ModelAdmin):
+    list_display = ('id','taskStatusFK','fileType')
+    list_display_links = ('id','taskStatusFK','fileType',)
+    search_fields = ('taskStatusFK',)
     list_per_page = 10
 
-admin.site.register(FilesTasksStatus, adminFilesTasksStatus)
+admin.site.register(FilesTasksStatus,AdminFilesTasksStatus)
 
-
-class adminTasksEquipments(admin.ModelAdmin):
-    list_display = ('id', 'taskFK', 'equipmentFK')
-    list_display_links = ('id', 'taskFK', 'equipmentFK',)
-    search_fields = ('taskFK', 'equipmentFK',)
+class AdminTasksEquipments(admin.ModelAdmin):
+    list_display = ('id','taskFK','equipmentFK')
+    list_display_links = ('id','taskFK','equipmentFK',)
+    search_fields = ('equipmentFK',)
     list_per_page = 10
 
-admin.site.register(TasksEquipments, adminTasksEquipments)
+admin.site.register(TasksEquipments,AdminTasksEquipments)
 
-class adminThemes(admin.ModelAdmin):
-    list_display = ('id', 'name', 'timeLoad')
-    list_display_links = ('id', 'name', 'timeLoad',)
-    search_fields = ('name', 'timeLoad',)
+class AdminEnviromentsAssignees(admin.ModelAdmin):
+    list_display = ('id','environmentFK','assigneeFK')
+    list_display_links = ('id','environmentFK','assigneeFK',)
+    search_fields = ('environmentFK',)
     list_per_page = 10
 
-admin.site.register(Themes, adminThemes)
+admin.site.register(EnviromentsAssignees,AdminEnviromentsAssignees)
 
-
-class adminCourses(admin.ModelAdmin):
-    list_display = ('id', 'name', 'category', 'duration', 'area', 'modality')
-    list_display_links = ('id', 'name', 'category', 'duration', 'area', 'modality',)
-    search_fields = ('name', 'category', 'area', 'modality',)
+class AdminThemes(admin.ModelAdmin):
+    list_display = ('id','name','timeLoad')
+    list_display_links = ('id','name','timeLoad',)
+    search_fields = ('name',)
     list_per_page = 10
 
-admin.site.register(Courses, adminCourses)
+admin.site.register(Themes,AdminThemes)
 
-
-class adminClasses(admin.ModelAdmin):
-    list_display = ('id', 'name', 'courseFK', 'startDate', 'endDate')
-    list_display_links = ('id', 'name', 'courseFK', 'startDate', 'endDate',)
-    search_fields = ('name', 'courseFK',)
+class AdminCourses(admin.ModelAdmin):
+    list_display = ('id','name','category', 'durationType', 'area')
+    list_display_links = ('id','name','durationType', 'area',)
+    search_fields = ('name',)
     list_per_page = 10
 
-admin.site.register(Classes, adminClasses)
+admin.site.register(Courses,AdminCourses)
 
-
-class adminClassesDivision(admin.ModelAdmin):
-    list_display = ('id', 'name', 'classFK')
-    list_display_links = ('id', 'name', 'classFK',)
-    search_fields = ('name', 'classFK',)
+class AdminCoursesThemes(admin.ModelAdmin):
+    list_display = ('id','courseFK','themeFK')
+    list_display_links = ('id','courseFK','themeFK',)
+    search_fields = ('courseFK','themeFK',)
     list_per_page = 10
 
-admin.site.register(DivisionClass, adminClassesDivision)
+admin.site.register(CoursesThemes,AdminCoursesThemes)
 
-class adminTeacherAlocation(admin.ModelAdmin):
-    list_display = ('id', 'classFK', 'themeFK', 'createdDate', 'updatedDate', 'reporterFK')
-    list_display_links = ('id', 'classFK', 'themeFK', 'createdDate', 'updatedDate', 'reporterFK',)
-    search_fields = ('classFK', 'themeFK',)
+class AdminClasses(admin.ModelAdmin):
+    list_display = ('id','name','courseFK')
+    list_display_links = ('id','name','courseFK',)
+    search_fields = ('name','courseFK',)
     list_per_page = 10
 
-admin.site.register(TeacherAlocation, adminTeacherAlocation)
+admin.site.register(Classes,AdminClasses)
 
-
-class adminTeacherAlocationDetailEnv(admin.ModelAdmin):
-    list_display = ('id', 'teacherAlocationDetailFK', 'environmentFK', 'weekDay', 'hourStart', 'hourEnd', 'startDate', 'endDate')
-    list_display_links = ('id', 'teacherAlocationDetailFK', 'environmentFK', 'weekDay', 'hourStart', 'hourEnd', 'startDate', 'endDate',)
-    search_fields = ('teacherAlocationDetailFK', 'environmentFK',)
+class AdminClassesDivision(admin.ModelAdmin):
+    list_display = ('id','name','classFK')
+    list_display_links = ('id','name','classFK',)
+    search_fields = ('name','classFK',)
     list_per_page = 10
 
-admin.site.register(TeacherAlocationDetailEnv, adminTeacherAlocationDetailEnv)
+admin.site.register(ClassesDivision,AdminClassesDivision)
 
-
-class adminDeadline(admin.ModelAdmin):
-    list_display = ('id', 'targetDate', 'category')
-    list_display_links = ('id', 'targetDate', 'category',)
-    search_fields = ('category',)
+class AdminTeacherAlocation(admin.ModelAdmin):
+    list_display = ('id','classFK','themeFK')
+    list_display_links = ('id','classFK','themeFK',)
+    search_fields = ('classFK','themeFK',)
     list_per_page = 10
 
-admin.site.register(Deadline, adminDeadline)
+admin.site.register(TeacherAlocation,AdminTeacherAlocation)
 
 
-class adminSignatures(admin.ModelAdmin):
-    list_display = ('id', 'ownerFK', 'createdDate', 'signature')
-    list_display_links = ('id', 'ownerFK', 'createdDate', 'signature',)
+class AdminTeacherAlocationDetail(admin.ModelAdmin):
+    list_display = ('id','teacherFK','classDivisionFK','alocationStatus')
+    list_display_links = ('id','teacherFK','classDivisionFK','alocationStatus',)
+    search_fields = ('teacherFK','classDivisionFK',)
+    list_per_page = 10
+
+admin.site.register(TeacherAlocationDetail,AdminTeacherAlocationDetail)
+
+
+class AdminTeacherAlocationDetailEnvironment(admin.ModelAdmin):
+    list_display = ('id','teacherAlocationDetailFK','environmentFK')
+    list_display_links = ('id','teacherAlocationDetailFK','environmentFK',)
+    search_fields = ('teacherAlocationDetailFK','environmentFK',)
+    list_per_page = 10
+
+admin.site.register(TeacherAlocationDetailEnvironment,AdminTeacherAlocationDetailEnvironment)
+
+
+class AdminDeadline(admin.ModelAdmin):
+    list_display = ('id','targetDate','category')
+    list_display_links = ('id','targetDate','category',)
+    search_fields = ('targetDate','category',)
+    list_per_page = 10
+
+admin.site.register(Deadline,AdminDeadline)
+
+class AdminSignatures(admin.ModelAdmin):
+    list_display = ('id','ownerFK','createdDate')
+    list_display_links = ('id','ownerFK','createdDate',)
     search_fields = ('ownerFK',)
     list_per_page = 10
 
-admin.site.register(Signatures, adminSignatures)
+admin.site.register(Signatures,AdminSignatures)
 
-
-
-class adminPlan(admin.ModelAdmin):
-    list_display = ('id', 'cutomUserFk', 'themeFK', 'status','signatureFK','approverFK')
-    list_display_links = ('id', 'cutomUserFk', 'themeFK', 'status','signatureFK','approverFK')
-    search_fields = ('cutomUserFk', 'themeFK', 'signatureFK', 'approverFK', )
+class AdminPlan(admin.ModelAdmin):
+    list_display = ('id','teacherFK','courseThemeFK','status')
+    list_display_links = ('id','teacherFK','courseThemeFK','status',)
+    search_fields = ('teacherFK',)
     list_per_page = 10
 
-admin.site.register(Plan, adminPlan)
+admin.site.register(Plan,AdminPlan)
 
-
-class adminPlanStatus(admin.ModelAdmin):
-    list_display = ('id', 'planFK', 'createdDate', 'status','comment','file')
-    list_display_links = ('id', 'planFK', 'createdDate', 'status','comment','file')
+class AdminPlanStatus(admin.ModelAdmin):
+    list_display = ('id','planFK','createdDate','status')
+    list_display_links = ('id','planFK','createdDate','status',)
     search_fields = ('planFK',)
     list_per_page = 10
 
-admin.site.register(PlanStatus, adminPlanStatus)
-    
-    
+admin.site.register(PlanStatus,AdminPlanStatus)
