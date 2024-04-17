@@ -31,6 +31,19 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+#   'sge-senai-mange.up.railway.app',
+#]
+
+#CSRF_TRUSTED_ORIGINS = [
+#    'http://localhost',
+#    '127.0.0.1',
+#    'https://' + production_server
+#]
+
+
+
+
+
 CSRF_TRUSTED_ORIGINS = ['http://localhost', 'http://127.0.0.1', 'https://projeto-sge-production.up.railway.app']
 
 
