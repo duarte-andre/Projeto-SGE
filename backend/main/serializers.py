@@ -1,7 +1,8 @@
 from rest_framework import serializers
 from .models import *
 
-class DeadlinesSerializer(serializers.ModelSerializer):
+#conversor python <---> json
+class DeadlineSerializer(serializers.ModelSerializer):
     class Meta:
         model = Deadline
         fields = '__all__'

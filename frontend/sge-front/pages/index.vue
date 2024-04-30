@@ -3,7 +3,7 @@
     const { signIn } = useAuth() //importando a função de login da sidebase
     
     //JÉSSICA NÃO TRANQUE O CURSO:
-    //const email = ref('')
+    //const username = ref('')
     //const password = ref('')
 
     const credentials = reactive({
@@ -73,7 +73,7 @@
                 <h1>LOGIN</h1>
                 <form class="login_form" v-on:submit.prevent="submitLogin">
                     <div class="input_container">
-                        <CustomInput label="LOGIN" inputId="user_login"
+                        <CustomInput type="email" label="LOGIN" inputId="user_login"
                             v-model="credentials.email"
                         />
                     </div>

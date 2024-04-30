@@ -5,22 +5,21 @@ from django.contrib.auth.admin import UserAdmin
 class AdminCustomUser(UserAdmin):
     model = CustomUser
     list_display = ['id','email','registrationNumber','is_active']
-    fieldsets= (
+    list_display_links = ('id','email','registrationNumber','is_active',)
+    fieldsets = (
         (None, {'fields':('email','password')}),
-        ('Permissions', {'fields':('is_staff','groups', 'user_permissions')}),
+        ('Permissions', {'fields': ('is_staff', 'is_active', 'groups', 'user_permissions',)}),
         ('Management', {'fields': ('last_login',)}),
-        ('Custom fields', {'fields':('registrationNumber', 'phoneNumber', 'is_email_verified')}),
-        
+        ('Custom fields', {'fields': ('registrationNumber', 'phoneNumber', 'is_email_verified',)}),
     )
-    filter_horizontal = ('groups', 'user_permissions')
+    filter_horizontal = ('groups', 'user_permissions',)
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email','password1', 'password2', 'is_staff', 'is_active', 'groups', 'user_permissions')
+            'fields': ('email', 'password1', 'password2', 'is_staff', 'is_active', 'groups', 'user_permissions',)
         }),
     )
-    
-    search_fields=['email']
+    search_fields = ['email',]
     ordering = ['email']
 
 admin.site.register(CustomUser,AdminCustomUser)
@@ -187,3 +186,21 @@ class AdminPlanStatus(admin.ModelAdmin):
     list_per_page = 10
 
 admin.site.register(PlanStatus,AdminPlanStatus)
+
+
+class AdminChatBot(admin.ModelAdmin):
+    list_display = ('id','createdDate','scheduledDate')
+    list_display_links = ('id','createdDate','scheduledDate',)
+    search_fields = ('scheduledDate',)
+    list_per_page = 10
+
+admin.site.register(ChatBot,AdminChatBot)
+
+
+class AdminFileLogs(admin.ModelAdmin):
+    list_display = ('id','type','phoneNumber')
+    list_display_links = ('id','type','phoneNumber',)
+    search_fields = ('type','phoneNumber',)
+    list_per_page = 10
+
+admin.site.register(FileLogs,AdminFileLogs)

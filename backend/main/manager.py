@@ -11,7 +11,7 @@ class CustomManager(BaseUserManager):
         regNumber = registrationNumber if registrationNumber else random.randint(1,100000)
 
         email = self.normalize_email(email)
-
+   
         user = self.model(
             email=email,            
             registrationNumber=regNumber,
@@ -21,9 +21,11 @@ class CustomManager(BaseUserManager):
         user.save(using=self.db)
         return user
         
-    def create_superuser(self, email, password=None, registrationNumber=None,**extra_fields):
-        extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('is_superuser', True)
+    def create_superuser(self, email, password=None, registrationNumber=None, **extra_fields):
+        #se é criação de super user, então seta estes atributos automaticamente:
+        extra_fields.setdefault('is_staff',True)
+        extra_fields.setdefault('is_superuser',True)
         
         return self.create_user(email, password, registrationNumber, **extra_fields)
+            
         
