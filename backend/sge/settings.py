@@ -163,3 +163,6 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication'
     ],
 }
+
+META_ENDPOINT = 'https://graph.facebook.com/v18.0/286166367916184/messages'
+META_TOKEN = 'EABo8VjQwxTUBO7nC0TZBtqTxF2hlxbUE7lMEiudI3WzISG9lGQSr809gIMLnIZAMj14OmFulaK03TgvUnbiD1n9rdXWMWtO1h249AGjZBKFyhFs8KeDiawp8vQzLRzqbYHED9UM9y7yAMUB2srvdHfq78fS8keKAl6AqIbaGL11zKtY3hUgvR8uD1ZCqIFeqQ67CtTNZCVZBUh7j34pWwZD'
